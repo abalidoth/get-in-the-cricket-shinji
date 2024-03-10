@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlev1l66qx2dk"]
+
+[sub_resource type="TileSet" id="TileSet_b82by"]
+tile_shape = 3
+
+[node name="CricketMap" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_b82by")
+format = 2
