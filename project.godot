@@ -14,6 +14,10 @@ config/name="GWJ 67"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[dotnet]
+
+project/assembly_name="GWJ 67"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
