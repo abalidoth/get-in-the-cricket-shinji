@@ -35,18 +35,18 @@ public partial class WormController : Node2D
 	[Signal]
 	public delegate void DieEventHandler();
 
-    Vector2I H_Outside = new Vector2I(0, 0);
-    Vector2I H_Barrier = new Vector2I(1, 0);
-    Vector2I H_Empty = new Vector2I(2, 0);
-    Vector2I H_Left = new Vector2I(3, 0);
+	Vector2I H_Outside = new Vector2I(0, 0);
+	Vector2I H_Barrier = new Vector2I(1, 0);
+	Vector2I H_Empty = new Vector2I(2, 0);
+	Vector2I H_Left = new Vector2I(3, 0);
 	Vector2I H_Right = new Vector2I(4, 0);
-    Vector2I H_Step = new Vector2I(5, 0);
-    Vector2I H_GoStop = new Vector2I(6, 0);
-    Vector2I H_Jump = new Vector2I(7, 0);
+	Vector2I H_Step = new Vector2I(5, 0);
+	Vector2I H_GoStop = new Vector2I(6, 0);
+	Vector2I H_Jump = new Vector2I(7, 0);
 
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
 	{
 		CricketMap = GetNode<TileMap>(CricketMapPath);
 		worm = new Worm(
@@ -80,7 +80,7 @@ public partial class WormController : Node2D
 		}
 
 		worm.Move(Direction);
-
+		if (NewPositionType != H_Empty) worm.TargetLength++;
 		if (NewPositionType == H_Left) EmitSignal(SignalName.Left);
 		if (NewPositionType == H_Right) EmitSignal(SignalName.Right);
 		if (NewPositionType == H_Step) EmitSignal(SignalName.Step);
@@ -93,14 +93,19 @@ public partial class WormController : Node2D
 		}
 	}
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event is InputEventKey inputEventKey && @event.IsPressed())
-		{
-            if (Inputs.ContainsKey(inputEventKey.Keycode)) Move(Inputs[inputEventKey.Keycode]);
-		}
-    }
+	public void Tick()
+	{
+		Move(worm.CurrentDir);
+	}
 
-    public bool IllegalHex(Vector2I PositionType) => PositionType == H_Barrier || PositionType == H_Empty;
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventKey inputEventKey && @event.IsPressed())
+		{
+			if (Inputs.ContainsKey(inputEventKey.Keycode)) Move(Inputs[inputEventKey.Keycode]);
+		}
+	}
+
+	public bool IllegalHex(Vector2I PositionType) => PositionType == H_Barrier || PositionType == H_Empty;
 
 }
