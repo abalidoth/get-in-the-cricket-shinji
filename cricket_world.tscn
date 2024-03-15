@@ -76,3 +76,6 @@ layer_0/tile_data = PackedInt32Array(65535, 0, 0, 131071, 0, 0, 196607, 0, 0, 26
 [node name="Cricket" type="AnimatedSprite2D" parent="."]
 position = Vector2(240, 368)
 sprite_frames = SubResource("SpriteFrames_tbqlw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(546, 260)
