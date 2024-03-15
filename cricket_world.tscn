@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bymuags1jxca4"]
+[gd_scene load_steps=11 format=3 uid="uid://r18felxffcdy"]
 
 [ext_resource type="Script" path="res://CricketWorld.gd" id="1_8dc76"]
 [ext_resource type="Texture2D" uid="uid://o232mipfbwlw" path="res://assets/ground.png" id="2_0rfd6"]

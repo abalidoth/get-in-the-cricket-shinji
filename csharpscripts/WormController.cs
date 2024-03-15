@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class WormController : Node
+public partial class WormController : Node2D
 {
 	Worm worm;
 	TileMap CricketMap;
@@ -13,8 +13,6 @@ public partial class WormController : Node
 	string SegmentSceneFilename { get; set; }
 	[Export]
 	string CricketMapPath { get; set; }
-	[Export]
-	string ContainerPath { get; set; }
 
 	[Signal]
 	public delegate void StepEventHandler();
@@ -36,10 +34,10 @@ public partial class WormController : Node
 	public override void _Ready()
 	{
 		CricketMap = GetNode<TileMap>(CricketMapPath);
-        worm = new Worm(
+		worm = new Worm(
 			GD.Load<PackedScene>(SegmentSceneFilename),
 			CricketMap,
-			GetNode<Node2D>(ContainerPath),
+			this,
 			StartPosition,
 			StartLength
 			);
