@@ -19,6 +19,8 @@ public partial class WormController : Node2D
 	string SegmentSceneFilename { get; set; }
 	[Export]
 	string CricketMapPath { get; set; }
+	[Export]
+	string[] StartingMoves { get; set; }
 
 	[Signal]
 	public delegate void StepEventHandler();
@@ -66,7 +68,18 @@ public partial class WormController : Node2D
 			{ Key.Z, new Vector3I(-1, 1, 0)}, //SW
 			{ Key.A, new Vector3I(-1, 0, 1)}  //W
 		};
-		
+
+		Dictionary<string, Vector3I> Directions = new Dictionary<string, Vector3I>()
+		{
+			{ "NW", new Vector3I(0,-1, 1)}, //NW
+			{ "NE", new Vector3I(1,-1, 0)}, //NE
+			{ "E", new Vector3I(1, 0,-1)}, //E
+			{ "SE", new Vector3I(0, 1,-1)}, //SE
+			{ "SW", new Vector3I(-1, 1, 0)}, //SW
+			{ "W", new Vector3I(-1, 0, 1)}  //W
+		};
+
+		foreach (string MoveDir in StartingMoves) { Move(Directions[MoveDir]); }
 	}
 
 	public void Move(Vector3I Direction)
