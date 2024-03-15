@@ -11,16 +11,17 @@ public partial class WormController : Node2D
 	bool Stopped = true;
 	Dictionary<Key, Vector3I> Inputs;
 
+	
 	[Export]
-	Vector3I StartPosition { get; set; }
+	int StartLength;
 	[Export]
-	int StartLength { get; set; }
+	string SegmentSceneFilename;
 	[Export]
-	string SegmentSceneFilename { get; set; }
+	Vector3I StartPosition;
 	[Export]
-	string CricketMapPath { get; set; }
+	string[] StartingMoves;
 	[Export]
-	string[] StartingMoves { get; set; }
+	string CricketMapPath;
 
 	[Signal]
 	public delegate void StepEventHandler();
@@ -37,14 +38,23 @@ public partial class WormController : Node2D
 	[Signal]
 	public delegate void DieEventHandler();
 
+	[ExportGroup("TileTypeAtlasCoords")]
+	[Export]
 	Vector2I H_Outside = new Vector2I(0, 0);
+	[Export]
 	Vector2I H_Barrier = new Vector2I(1, 0);
-	Vector2I H_Empty = new Vector2I(2, 0);
-	Vector2I H_Left = new Vector2I(3, 0);
-	Vector2I H_Right = new Vector2I(4, 0);
-	Vector2I H_Step = new Vector2I(5, 0);
-	Vector2I H_GoStop = new Vector2I(6, 0);
-	Vector2I H_Jump = new Vector2I(7, 0);
+    [Export]
+    Vector2I H_Empty = new Vector2I(2, 0);
+    [Export]
+    Vector2I H_Left = new Vector2I(3, 0);
+    [Export]
+    Vector2I H_Right = new Vector2I(4, 0);
+    [Export]
+    Vector2I H_Step = new Vector2I(5, 0);
+    [Export]
+    Vector2I H_GoStop = new Vector2I(6, 0);
+    [Export]
+    Vector2I H_Jump = new Vector2I(7, 0);
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -85,7 +95,12 @@ public partial class WormController : Node2D
 	public void Move(Vector3I Direction)
 	{
 		Vector3I NewPosition = worm.HeadPosition + Direction;
-		Vector2I NewPositionType = CricketMap.GetCellAtlasCoords(0, new Vector2I(NewPosition.X, NewPosition.Y));
+		Vector2I NewPositionType;
+
+        try
+		{
+			 NewPositionType = CricketMap.GetCellAtlasCoords(0, new Vector2I(NewPosition.X, NewPosition.Y));
+		} catch (Exception) {  NewPositionType = H_Outside;  }
 		if (IllegalHex(NewPositionType) || worm.Occupies(NewPosition) )
 		{
 			EmitSignal(SignalName.Die);
