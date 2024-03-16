@@ -25,21 +25,29 @@ sources/2 = SubResource("TileSetAtlasSource_8pn3e")
 [node name="WormWorld" type="Node2D"]
 
 [node name="Worm" type="Node2D" parent="."]
+position = Vector2(192, 244)
 script = ExtResource("2_8qws8")
 StartLength = 3
 SegmentSceneFilename = "res://worm_segment.tscn"
+StartingMoves = PackedStringArray("E", "NE")
 CricketMapPath = "%CricketMap"
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -232.0
-offset_top = -260.0
-offset_right = 280.0
-offset_bottom = 252.0
-texture = ExtResource("2_foy4v")
+H_Outside = Vector2i(-1, -1)
+H_Barrier = Vector2i(7, 0)
+H_Empty = Vector2i(0, 0)
+H_Left = Vector2i(1, 0)
+H_Right = Vector2i(2, 0)
+H_Jump = Vector2i(4, 0)
 
 [node name="CricketMap" type="TileMap" parent="."]
 unique_name_in_owner = true
-position = Vector2(-62, -59)
+position = Vector2(184, 252)
 tile_set = SubResource("TileSet_b82by")
 format = 2
-layer_0/tile_data = PackedInt32Array(-65536, 2, 0, 0, 196610, 0, -65535, 2, 0, 1, 2, 0, 65536, 2, 0, 131071, 2, 0, 65535, 2, 0, 131070, 2, 0, 196606, 2, 0, 196607, 2, 0, 131072, 2, 0, 65537, 2, 0, 2, 2, 0, -65534, 2, 0, -131070, 2, 0, -131071, 2, 0, -131072, 2, 0, -1, 2, 0, 65534, 2, 0, 327678, 131074, 0)
+layer_0/tile_data = PackedInt32Array(458748, 2, 0, 458749, 2, 0, 458750, 2, 0, 393213, 2, 0, 393214, 2, 0, 327677, 2, 0, 327678, 2, 0, 327679, 2, 0, 262142, 458754, 0, 262143, 458754, 0, 131071, 458754, 0, 65536, 458754, 0, 196606, 2, 0, 196608, 2, 0, 262141, 2, 0, 196607, 262146, 0, 131072, 2, 0, 131070, 2, 0, 65537, 2, 0, 131073, 2, 0, 196605, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 196610, 0, 1, 2, 0, 2, 2, 0, -1, 2, 0, -65534, 2, 0, -65537, 2, 0, -131072, 2, 0, -131071, 327682, 0, -131070, 2, 0, -131069, 2, 0, -65536, 458754, 0, -65535, 458754, 0, -196607, 458754, 0, -196606, 458754, 0, -196608, 2, 0, -196605, 2, 0, -262144, 2, 0, -262143, 2, 0, -262142, 393218, 0, -262141, 2, 0, -262140, 2, 0, -327679, 131074, 0, -327678, 2, 0, -327677, 2, 0, -327676, 65538, 0, -393214, 2, 0, -393213, 2, 0, -393212, 2, 0)
+
+[node name="CricketBG" type="Sprite2D" parent="CricketMap"]
+z_index = -1
+position = Vector2(16, -4)
+rotation = 1.5708
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_foy4v")
