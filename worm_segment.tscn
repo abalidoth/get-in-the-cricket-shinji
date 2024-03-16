@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://botq75a211ol1"]
+[gd_scene load_steps=4 format=3 uid="uid://botq75a211ol1"]
 
-[ext_resource type="Texture2D" uid="uid://cpvh7nbeni188" path="res://assets/worm_grid.png" id="1_m3ogt"]
 [ext_resource type="Script" path="res://WormSegment.gd" id="2_jbw17"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8owk8"]
+load_path = "res://.godot/imported/worm_grid.png-4c1a0a1db8b4078934446471dfbc582a.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu44k"]
+atlas = SubResource("CompressedTexture2D_8owk8")
+region = Rect2(0, 0, 32, 32)
+
 [node name="WormSegment" type="Sprite2D"]
-texture = ExtResource("1_m3ogt")
+texture = SubResource("AtlasTexture_gu44k")
 script = ExtResource("2_jbw17")

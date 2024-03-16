@@ -7,7 +7,7 @@ const HEX_NW = Vector3i(0,-1,1)
 const HEX_W= Vector3i(-1,0,1)
 const HEX_SW = Vector3i(-1,1,0)
 
-const TX_S = 96
+const TX_S = 32
 
 const diff_to_coord = {
 	HEX_SE:0,
