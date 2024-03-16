@@ -19,11 +19,11 @@ const diff_to_coord = {
 }
 
 func set_tail_segment(target_diff):
-	var c1 = diff_to_coord[-target_diff]
+	var c1 = diff_to_coord[target_diff]
 	texture.region = Rect2(6*TX_S, c1*TX_S, TX_S, TX_S)
 	
 func set_head_segment(source_diff):
-	var c2 = diff_to_coord[-source_diff]
+	var c2 = diff_to_coord[source_diff]
 	texture.region = Rect2(c2*TX_S, 6*TX_S, TX_S, TX_S)
 
 func set_middle_segment(target_diff, source_diff):
