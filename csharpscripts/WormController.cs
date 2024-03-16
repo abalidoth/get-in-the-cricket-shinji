@@ -8,7 +8,6 @@ public partial class WormController : Node2D
 
 	Worm worm;
 	TileMap CricketMap;
-	bool Stopped = true;
 	Dictionary<Key, Vector3I> Inputs;
 
 	
@@ -37,6 +36,8 @@ public partial class WormController : Node2D
 	public delegate void LeftEventHandler();
 	[Signal]
 	public delegate void DieEventHandler();
+	[Signal]
+	public delegate void OnMoveEventHandler();
 
 	[ExportGroup("TileTypeAtlasCoords")]
 	[Export]
@@ -52,9 +53,11 @@ public partial class WormController : Node2D
 	[Export]
 	Vector2I H_Step = new Vector2I(5, 0);
 	[Export]
-	Vector2I H_GoStop = new Vector2I(6, 0);
+	Vector2I H_Stop = new Vector2I(6, 0);
 	[Export]
-	Vector2I H_Jump = new Vector2I(7, 0);
+	Vector2I H_Go = new Vector2I(7, 0);
+	[Export]
+	Vector2I H_Jump = new Vector2I(8, 0);
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -94,30 +97,37 @@ public partial class WormController : Node2D
 
 	public void Move(Vector3I Direction)
 	{
-		Vector3I NewPosition = worm.HeadPosition + Direction;
+		Vector3I NewPosition3 = worm.HeadPosition + Direction;
+		Vector2I NewPosition = new Vector2I(NewPosition3.X, NewPosition3.Y);
 		Vector2I NewPositionType;
 
 		try
 		{
-			 NewPositionType = CricketMap.GetCellAtlasCoords(0, new Vector2I(NewPosition.X, NewPosition.Y));
+			 NewPositionType = CricketMap.GetCellAtlasCoords(0, NewPosition);
 		} catch (Exception) {  NewPositionType = H_Outside;  }
-		if (IllegalHex(NewPositionType) || worm.Occupies(NewPosition) )
+		if (IllegalHex(NewPositionType) || worm.Occupies(NewPosition3))
 		{
 			EmitSignal(SignalName.Die);
 			return;
 		}
 
+		EmitSignal(SignalName.OnMove);
 		worm.Move(Direction);
 		if (NewPositionType != H_Empty) worm.TargetLength++;
 		if (NewPositionType == H_Left) EmitSignal(SignalName.Left);
 		if (NewPositionType == H_Right) EmitSignal(SignalName.Right);
 		if (NewPositionType == H_Step) EmitSignal(SignalName.Step);
 		if (NewPositionType == H_Jump) EmitSignal(SignalName.Jump);
-		if (NewPositionType == H_GoStop)
+		if (NewPositionType == H_Stop)
 		{
-			if (Stopped) { EmitSignal(SignalName.Go); }
-			else { EmitSignal(SignalName.Stop); }
-			Stopped = !Stopped;
+			CricketMap.SetCell(0, NewPosition, 0, H_Go);
+			EmitSignal(SignalName.Stop);
+		}
+		if (NewPositionType == H_Go)
+
+		{
+			CricketMap.SetCell(0, NewPosition, 0, H_Stop);
+			EmitSignal(SignalName.Go);
 		}
 	}
 
