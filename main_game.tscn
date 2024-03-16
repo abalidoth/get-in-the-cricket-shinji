@@ -11,6 +11,7 @@ scale = Vector2(1.25, 1.25)
 debug = false
 
 [node name="WormWorld" parent="." instance=ExtResource("2_l2j73")]
+H_Step = Vector2i(5, 0)
 
 [connection signal="Go" from="WormWorld" to="CricketWorld" method="_on_worm_world_go"]
 [connection signal="Jump" from="WormWorld" to="CricketWorld" method="_on_worm_world_jump"]

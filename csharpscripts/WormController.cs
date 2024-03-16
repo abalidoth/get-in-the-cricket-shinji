@@ -8,7 +8,7 @@ public partial class WormController : Node2D
 
 	Worm worm;
 	TileMap CricketMap;
-	Dictionary<Key, Vector3I> Inputs;
+	Dictionary<string, Vector3I> Directions;
 
 	
 	[Export]
@@ -72,7 +72,7 @@ public partial class WormController : Node2D
 			StartLength
 			);
 
-		Inputs = new Dictionary<Key, Vector3I>()
+		/*Inputs = new Dictionary<Key, Vector3I>()
 		{
 			{ Key.W, new Vector3I(0,-1, 1)}, //NW
 			{ Key.E, new Vector3I(1,-1, 0)}, //NE
@@ -80,9 +80,9 @@ public partial class WormController : Node2D
 			{ Key.X, new Vector3I(0, 1,-1)}, //SE
 			{ Key.Z, new Vector3I(-1, 1, 0)}, //SW
 			{ Key.A, new Vector3I(-1, 0, 1)}  //W
-		};
+		};*/
 
-		Dictionary<string, Vector3I> Directions = new Dictionary<string, Vector3I>()
+		Directions = new Dictionary<string, Vector3I>()
 		{
 			{ "NW", new Vector3I(0,-1, 1)}, //NW
 			{ "NE", new Vector3I(1,-1, 0)}, //NE
@@ -144,9 +144,9 @@ public partial class WormController : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventKey inputEventKey && @event.IsPressed())
+		if (@event.IsPressed() && @event is InputEventAction eventAction)
 		{
-			if (Inputs.ContainsKey(inputEventKey.Keycode)) Move(Inputs[inputEventKey.Keycode]);
+			if (Directions.ContainsKey(eventAction.Action.ToString())) Move(Directions[eventAction.Action.ToString()]);
 		}
 	}
 

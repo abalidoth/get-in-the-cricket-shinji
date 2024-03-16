@@ -9,6 +9,7 @@ const ROCK = Vector2i(0,0)
 const STICK = Vector2i(1,0)
 const EMPTY = Vector2i(2,0)
 const SHORE = Vector2i(3,0)
+const WATER = Vector2i(4,0)
 
 signal win_game()
 
@@ -35,6 +36,8 @@ func cricket_forward():
 			set_cricket_pos(target)
 		SHORE:
 			set_cricket_pos(target)
+		WATER:
+			set_cricket_pos(target)
 			win_game.emit()
 		_: #crash
 			cricket_stop()
@@ -52,17 +55,19 @@ func cricket_jump():
 	var target = obstacle + cricket_facing
 	var obs_sq = $CricketMap.get_cell_atlas_coords(0,obstacle)
 	var target_sq = $CricketMap.get_cell_atlas_coords(0,target)
-	if (obs_sq == STICK or obs_sq == EMPTY):
+	if (obs_sq != ROCK):
 		match target_sq:
 			EMPTY:
 				set_cricket_pos(target)
 			SHORE:
 				set_cricket_pos(target)
+			WATER:
+				set_cricket_pos(target)
 				win_game.emit()
 		
 
 
-func make_maze(height=12, stick_percentage = 0.5):
+func make_maze(height=11, stick_percentage = 0.5):
 	##idea: start with random grid of sticks and rocks
 	##remove a tile, then check whether all removed nodes are connected
 	##once they are, stop
