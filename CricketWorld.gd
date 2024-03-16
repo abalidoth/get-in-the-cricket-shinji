@@ -39,8 +39,8 @@ func cricket_forward():
 		WATER:
 			set_cricket_pos(target)
 			win_game.emit()
-		_: #crash
-			cricket_stop()
+		#_: #crash
+		#	cricket_stop()
 			
 func cricket_left():
 	cricket_facing = Vector2i(cricket_facing.y, -cricket_facing.x)
