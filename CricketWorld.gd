@@ -17,6 +17,12 @@ var cricket_facing := Vector2i(0,-1)
 
 @export var debug := true
 
+@export var worm_step_ratio := 4
+
+var cricket_go = false
+
+var worm_steps := 0
+
 func set_cricket_pos(pos: Vector2i):
 	cricket_pos = pos
 	%Cricket.position = $CricketMap.map_to_local(pos)
@@ -30,6 +36,8 @@ func cricket_forward():
 		SHORE:
 			set_cricket_pos(target)
 			win_game.emit()
+		_: #crash
+			cricket_stop()
 			
 func cricket_left():
 	cricket_facing = Vector2i(cricket_facing.y, -cricket_facing.x)
@@ -103,3 +111,41 @@ func _input(event):
 			KEY_D:
 				cricket_right()
 	
+
+func cricket_stop():
+	cricket_go = false
+	worm_steps = 0
+
+func _on_worm_world_go():
+	cricket_go = true
+	worm_steps = 1
+
+
+func _on_worm_world_jump():
+	cricket_jump()
+
+
+func _on_worm_world_left():
+	cricket_left()
+
+
+func _on_worm_world_on_move():
+	if cricket_go:
+		worm_steps += 1
+	if worm_steps == worm_step_ratio:
+		print(worm_steps)
+		cricket_forward()
+		worm_steps = 0
+
+
+func _on_worm_world_right():
+	cricket_right()
+
+
+func _on_worm_world_step():
+	cricket_forward()
+
+
+func _on_worm_world_stop():
+	cricket_stop()
+

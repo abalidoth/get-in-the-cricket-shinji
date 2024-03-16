@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://csharpscripts/WormController.cs" id="2_8qws8"]
 [ext_resource type="Texture2D" uid="uid://bh0q2tnvj6wnh" path="res://assets/cricket_bare_big.png" id="2_foy4v"]
-[ext_resource type="TileSet" uid="uid://djtnfvsb353b" path="res://cricket_tileset.tres" id="2_yvh2t"]
+[ext_resource type="TileSet" uid="uid://bwmjueco683gi" path="res://cricket_tileset.tres" id="2_yvh2t"]
 
 [node name="WormWorld" type="Node2D"]
 script = ExtResource("2_8qws8")
@@ -15,6 +15,7 @@ H_Outside = Vector2i(-1, -1)
 H_Barrier = Vector2i(7, 0)
 H_Left = Vector2i(2, 0)
 H_Right = Vector2i(1, 0)
+H_Step = Vector2i(2, 0)
 H_Stop = Vector2i(3, 0)
 H_Go = Vector2i(6, 0)
 H_Jump = Vector2i(4, 0)

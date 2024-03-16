@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://6dfggo5twwit"]
+[gd_scene load_steps=3 format=3 uid="uid://d2yarlqmfnq26"]
 
 [ext_resource type="PackedScene" uid="uid://r18felxffcdy" path="res://cricket_world.tscn" id="1_8v1ut"]
 [ext_resource type="PackedScene" uid="uid://dlev1l66qx2dk" path="res://worm_world.tscn" id="2_l2j73"]
@@ -6,7 +6,16 @@
 [node name="MainGame" type="Node2D"]
 
 [node name="CricketWorld" parent="." instance=ExtResource("1_8v1ut")]
-position = Vector2(380, 9)
+position = Vector2(518, 32)
+scale = Vector2(1.25, 1.25)
 debug = false
 
 [node name="WormWorld" parent="." instance=ExtResource("2_l2j73")]
+
+[connection signal="Go" from="WormWorld" to="CricketWorld" method="_on_worm_world_go"]
+[connection signal="Jump" from="WormWorld" to="CricketWorld" method="_on_worm_world_jump"]
+[connection signal="Left" from="WormWorld" to="CricketWorld" method="_on_worm_world_left"]
+[connection signal="OnMove" from="WormWorld" to="CricketWorld" method="_on_worm_world_on_move"]
+[connection signal="Right" from="WormWorld" to="CricketWorld" method="_on_worm_world_right"]
+[connection signal="Step" from="WormWorld" to="CricketWorld" method="_on_worm_world_step"]
+[connection signal="Stop" from="WormWorld" to="CricketWorld" method="_on_worm_world_stop"]
