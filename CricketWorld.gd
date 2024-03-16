@@ -13,12 +13,13 @@ const SHORE = Vector2i(3,0)
 signal win_game()
 
 var cricket_pos := Vector2i(5,11)
-var cricket_facing := Vector2i(0,1)
+var cricket_facing := Vector2i(0,-1)
 
+@export var debug := true
 
 func set_cricket_pos(pos: Vector2i):
 	cricket_pos = pos
-	$Cricket.position = $CricketMap.map_to_local(pos)
+	%Cricket.position = $CricketMap.map_to_local(pos)
 	
 func cricket_forward():
 	var target = cricket_pos + cricket_facing
@@ -32,11 +33,11 @@ func cricket_forward():
 			
 func cricket_left():
 	cricket_facing = Vector2i(cricket_facing.y, -cricket_facing.x)
-	$Cricket.frame = ($Cricket.frame + 1)% 4
+	%Cricket.frame = posmod((%Cricket.frame - 1), 4)
 
 func cricket_right():
 	cricket_facing = Vector2i(-cricket_facing.y, cricket_facing.x)
-	$Cricket.frame = ($Cricket.frame + 1)% 4
+	%Cricket.frame = posmod((%Cricket.frame + 1), 4)
 
 func cricket_jump():
 	var obstacle = cricket_pos + cricket_facing
@@ -82,9 +83,16 @@ func make_maze(height=12, stick_percentage = 0.5):
 	
 func _ready():
 	make_maze()
-
+	set_cricket_pos(cricket_pos)
+	$CricketMap.set_cell(
+			0,
+			cricket_pos,
+			0,
+			EMPTY
+		)
+	
 func _input(event):
-	if event is InputEventKey and event.pressed:
+	if event is InputEventKey and event.pressed and debug:
 		match event.keycode:
 			KEY_W:
 				cricket_forward()
