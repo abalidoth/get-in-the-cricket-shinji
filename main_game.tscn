@@ -72,9 +72,6 @@ offset_right = 1403.0
 offset_bottom = 743.0
 texture = ExtResource("4_cvs32")
 
-[node name="GameOverTimer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="win_game" from="CricketWorld" to="." method="_on_cricket_world_win_game"]
 [connection signal="Collision" from="WormWorld" to="." method="_on_worm_world_collision"]
 [connection signal="Go" from="WormWorld" to="CricketWorld" method="_on_worm_world_go"]
