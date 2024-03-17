@@ -153,9 +153,3 @@ public partial class WormController : Node2D
 	public bool IllegalHex(Vector2I PositionType) => PositionType == H_Barrier || PositionType == H_Outside;
 
 }
-
-
-private void Tick()
-{
-	// Replace with function body.
-}
