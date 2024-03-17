@@ -35,7 +35,7 @@ public partial class WormController : Node2D
 	[Signal]
 	public delegate void LeftEventHandler();
 	[Signal]
-	public delegate void DieEventHandler();
+	public delegate void CollisionEventHandler();
 	[Signal]
 	public delegate void OnMoveEventHandler();
 
@@ -112,7 +112,7 @@ public partial class WormController : Node2D
 		GD.Print("Hex Type " + NewPositionType.ToString() + " " + IllegalHex(NewPositionType).ToString());
 		if (IllegalHex(NewPositionType) || worm.Occupies(NewPosition3))
 		{
-			EmitSignal(SignalName.Die);
+			EmitSignal(SignalName.Collision);
 			return;
 		}
 
