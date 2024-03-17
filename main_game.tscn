@@ -1,16 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2yarlqmfnq26"]
+[gd_scene load_steps=6 format=3 uid="uid://d2yarlqmfnq26"]
 
 [ext_resource type="PackedScene" uid="uid://r18felxffcdy" path="res://cricket_world.tscn" id="1_8v1ut"]
 [ext_resource type="PackedScene" uid="uid://dlev1l66qx2dk" path="res://worm_world.tscn" id="2_l2j73"]
 
+[sub_resource type="Gradient" id="Gradient_btfmt"]
+offsets = PackedFloat32Array(0, 0.836991, 1)
+colors = PackedColorArray(0.325441, 0.325441, 0.325441, 1, 0.314316, 0.314316, 0.314316, 1, 0, 0.47451, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4cov0"]
+noise_type = 2
+cellular_return_type = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mmq5m"]
+width = 1900
+height = 1080
+color_ramp = SubResource("Gradient_btfmt")
+noise = SubResource("FastNoiseLite_4cov0")
+
 [node name="MainGame" type="Node2D"]
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -8
+offset_left = -213.0
+offset_top = -170.0
+offset_right = 1687.0
+offset_bottom = 910.0
+texture = SubResource("NoiseTexture2D_mmq5m")
+
 [node name="CricketWorld" parent="." instance=ExtResource("1_8v1ut")]
-position = Vector2(518, 32)
+position = Vector2(87.9999, 30)
 scale = Vector2(1.25, 1.25)
 debug = false
 
 [node name="WormWorld" parent="." instance=ExtResource("2_l2j73")]
+position = Vector2(701, 0)
 H_Step = Vector2i(5, 0)
 
 [connection signal="Go" from="WormWorld" to="CricketWorld" method="_on_worm_world_go"]
