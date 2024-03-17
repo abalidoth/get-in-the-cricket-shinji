@@ -36,7 +36,6 @@ public partial class KeybindChanger : Button
 			InputMap.ActionEraseEvents(InputActionName);
 			InputMap.ActionAddEvent(InputActionName, inputEventKey);
 			GameSettings.EmitSignal("keybind_changed", CurrentKeybind);  
-			Text = CurrentKeybind;
 		}
 	}
 
