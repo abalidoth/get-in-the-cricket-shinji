@@ -5,18 +5,29 @@ public partial class KeybindChanger : Button
 {
 	[Export]
 	string InputActionName;
-        [Export]
+	[Export]
 	InputEventKey InitialBinding;
 	string CurrentKeybind;
 	Node GameSettings;
 
-	bool Active = false;
+	bool Active;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		InputMap.ActionAddEvent(InputActionName, InitialBinding)
-		Text = CurrentKeybind = InitialBinding.AsTextKeyLabel();
+		if (!InputMap.HasAction(InputActionName))
+		{
+			InputMap.AddAction(InputActionName);
+		} 
+		else
+		{
+			InputMap.ActionEraseEvents(InputActionName);
+		}
+		InputMap.ActionAddEvent(InputActionName, InitialBinding);
+		Text = CurrentKeybind = InitialBinding.AsText();
 		GameSettings = GetNode("/root/GameSettings");
+		GameSettings.Connect("keybind_changed", new Callable(this, MethodName.OnBindingChanged));
+		Active = false;
+		GD.Print(CurrentKeybind + " Ready");
 
 	}
 
@@ -32,10 +43,12 @@ public partial class KeybindChanger : Button
 				Text = CurrentKeybind;
 				return;
 			}
-			CurrentKeybind = inputEventKey.AsTextKeyLabel();
+			Text = CurrentKeybind = inputEventKey.AsText();
 			InputMap.ActionEraseEvents(InputActionName);
 			InputMap.ActionAddEvent(InputActionName, inputEventKey);
-			GameSettings.EmitSignal("keybind_changed", CurrentKeybind);  
+			GameSettings.EmitSignal("keybind_changed", CurrentKeybind);
+			Active = false;
+			GD.Print(InputActionName + " Changed");  
 		}
 	}
 
@@ -50,7 +63,7 @@ public partial class KeybindChanger : Button
 		{
 			Active = true;
 			Text = "???";
-                        GameSettings.EmitSignal("keybind_changed", CurrentKeybind); 
+			GameSettings.EmitSignal("keybind_changed", CurrentKeybind); 
 		}
 	}
 
@@ -58,15 +71,18 @@ public partial class KeybindChanger : Button
 	{
 		if (Active)
 		{
-			Active = false;
-                        if (NewBinding != CurrentKeybind) Text = CurrentKeybind;
+			if (NewBinding != CurrentKeybind) 
+			{
+				Active = false;
+				Text = CurrentKeybind;
+			}
 			return;
 		}
 		if (NewBinding == CurrentKeybind)
 		{
 			InputMap.ActionEraseEvents(InputActionName);
-			CurrentKeybind = "";
-			Text = "";
+			CurrentKeybind = "---";
+			Text = "---";
 		}
 	}
 
