@@ -15,7 +15,7 @@ public partial class KeybindChanger : Button
 	public override void _Ready()
 	{
 		InputMap.ActionAddEvent(InputActionName, InitialBinding)
-		Text = CurrentKeybind = InitialBinding..AsTextKeyLabel();
+		Text = CurrentKeybind = InitialBinding.AsTextKeyLabel();
 		GameSettings = GetNode("/root/GameSettings");
 
 	}
