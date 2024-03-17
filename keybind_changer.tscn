@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://csharpscripts/KeybindChanger.cs" id="1_6q2ua"]
 
-[node name="Button" type="Button"]
+[node name="KeybindChanger" type="Button"]
 offset_left = 4.0
 offset_top = 8.0
 offset_right = 152.0

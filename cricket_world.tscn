@@ -66,3 +66,9 @@ layer_0/tile_data = PackedInt32Array(65535, 0, 0, 131071, 0, 0, 196607, 0, 0, 26
 unique_name_in_owner = true
 position = Vector2(142, 368)
 sprite_frames = SubResource("SpriteFrames_tbqlw")
+
+[node name="Label" type="Label" parent="CricketMap"]
+offset_left = 11.0
+offset_top = -55.0
+offset_right = 51.0
+offset_bottom = -32.0

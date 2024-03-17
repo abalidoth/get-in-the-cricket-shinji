@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bysc1kecyeupc"]
+[gd_scene load_steps=5 format=3 uid="uid://bysc1kecyeupc"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_sxicq"]
+[ext_resource type="PackedScene" uid="uid://ymvkw1qvp52x" path="res://keybind_changer.tscn" id="2_4xjp8"]
 [ext_resource type="Texture2D" uid="uid://wmf0pu6iului" path="res://assets/cricket.png" id="2_bwpqr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wotpr"]
@@ -44,6 +45,80 @@ Use the keys to move around inside the cricket. Move over nerve ganglia to contr
 
 [img region=128,0,32,32]res://assets/cricket_tiles_symbols.png[/img] Jump two tiles forward. [img region=32,0,32,32]res://assets/ground.png[/img] can be jumped over, but [img region=0,0,32,32]res://assets/ground.png[/img] cannot.
 "
+
+[node name="NWBox" type="HBoxContainer" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+
+[node name="NWBinder" parent="HBoxContainer/LeftSide/NWBox" instance=ExtResource("2_4xjp8")]
+layout_mode = 2
+text = "NW"
+InputActionName = "NW"
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftSide/NWBox"]
+layout_mode = 2
+text = "Northwest"
+
+[node name="NEBox" type="HBoxContainer" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+
+[node name="NEBinder" parent="HBoxContainer/LeftSide/NEBox" instance=ExtResource("2_4xjp8")]
+layout_mode = 2
+text = "NE"
+InputActionName = "NE"
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftSide/NEBox"]
+layout_mode = 2
+text = "Northeast"
+
+[node name="EBox" type="HBoxContainer" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+
+[node name="EBinder" parent="HBoxContainer/LeftSide/EBox" instance=ExtResource("2_4xjp8")]
+layout_mode = 2
+text = "E"
+InputActionName = "E"
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftSide/EBox"]
+layout_mode = 2
+text = "East
+"
+
+[node name="SEBox" type="HBoxContainer" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+
+[node name="SEBinder" parent="HBoxContainer/LeftSide/SEBox" instance=ExtResource("2_4xjp8")]
+layout_mode = 2
+text = "SE"
+InputActionName = "SE"
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftSide/SEBox"]
+layout_mode = 2
+text = "Southeast
+"
+
+[node name="SWBox" type="HBoxContainer" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+
+[node name="SWBinder" parent="HBoxContainer/LeftSide/SWBox" instance=ExtResource("2_4xjp8")]
+layout_mode = 2
+text = "SW"
+InputActionName = "SW"
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftSide/SWBox"]
+layout_mode = 2
+text = "Southwest"
+
+[node name="WBox" type="HBoxContainer" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+
+[node name="WBinder" parent="HBoxContainer/LeftSide/WBox" instance=ExtResource("2_4xjp8")]
+layout_mode = 2
+text = "W"
+InputActionName = "W"
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftSide/WBox"]
+layout_mode = 2
+text = "West"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
