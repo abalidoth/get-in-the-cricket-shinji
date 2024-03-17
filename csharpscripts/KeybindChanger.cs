@@ -61,24 +61,20 @@ public partial class KeybindChanger : Button
 		}
 		else
 		{
-			Active = true;
 			Text = "???";
-			GameSettings.EmitSignal("keybind_changed", CurrentKeybind); 
+			GameSettings.EmitSignal("keybind_changed", ButtonClicked); 
+			Active = true;
 		}
 	}
 
 	 public void OnBindingChanged(string NewBinding)
 	{
-		if (Active)
+		if (Active && NewBinding == "ButtonClicked")
 		{
-			if (NewBinding != CurrentKeybind) 
-			{
-				Active = false;
-				Text = CurrentKeybind;
-			}
-			return;
+			Active = false;
+			Text = CurrentKeybind;
 		}
-		if (NewBinding == CurrentKeybind)
+		if (!Active && NewBinding == CurrentKeybind)
 		{
 			InputMap.ActionEraseEvents(InputActionName);
 			CurrentKeybind = "---";
