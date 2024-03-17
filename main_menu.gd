@@ -29,3 +29,10 @@ func _on_check_box_toggled(toggled_on):
 
 func _on_worm_ticks_slider_value_changed(value):
 	%WormTicksLabel.text = "%s Worm move(s) per cricket move" % value
+
+
+func _on_start_game_pressed():
+	GameSettings.challenge_mode = %CheckBox.button_pressed
+	GameSettings.challenge_speed = %ChallengeSpeedSlider.value
+	GameSettings.worm_ticks = %WormTicksSlider.value
+	get_tree().change_scene_to_file("res://main_game.tscn")

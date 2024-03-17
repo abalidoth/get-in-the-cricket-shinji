@@ -1,10 +1,4 @@
-extends Node
-
-@export var challenge_mode := false
-@export var challenge_speed := 1
-@export var worm_ticks := 4
-#and then the keyboard bindings
-
+extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,3 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _input(event):
+	if event is InputEventKey or event is InputEventMouseButton:
+		get_tree().change_scene_to_file("res://main_menu.tscn")

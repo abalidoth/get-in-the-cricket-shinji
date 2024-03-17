@@ -37,6 +37,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="CheckBox" type="CheckBox" parent="HBoxContainer/RightSide/ChallengeBox"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ChallengeMode" type="Label" parent="HBoxContainer/RightSide/ChallengeBox"]
@@ -73,6 +74,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="WormTicksSlider" type="HSlider" parent="HBoxContainer/RightSide/WormTicksBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -100,3 +102,4 @@ icon = SubResource("AtlasTexture_wotpr")
 [connection signal="toggled" from="HBoxContainer/RightSide/ChallengeBox/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="value_changed" from="HBoxContainer/RightSide/ChallengeSpeedBox/ChallengeSpeedSlider" to="." method="_on_challenge_speed_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/RightSide/WormTicksBox/WormTicksSlider" to="." method="_on_worm_ticks_slider_value_changed"]
+[connection signal="pressed" from="HBoxContainer/RightSide/StartGameBox/StartGame" to="." method="_on_start_game_pressed"]

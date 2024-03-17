@@ -18,8 +18,6 @@ var cricket_facing := Vector2i(0,-1)
 
 @export var debug := true
 
-@export var worm_step_ratio := 4
-
 var cricket_go = false
 
 var worm_steps := 0
@@ -137,7 +135,7 @@ func _on_worm_world_left():
 func _on_worm_world_on_move():
 	if cricket_go:
 		worm_steps += 1
-	if worm_steps == worm_step_ratio:
+	if worm_steps == GameSettings.worm_ticks:
 		print(worm_steps)
 		cricket_forward()
 		worm_steps = 0
