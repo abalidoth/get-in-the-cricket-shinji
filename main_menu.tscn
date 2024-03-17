@@ -1,8 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://bysc1kecyeupc"]
+[gd_scene load_steps=11 format=3 uid="uid://bysc1kecyeupc"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_sxicq"]
 [ext_resource type="PackedScene" uid="uid://ymvkw1qvp52x" path="res://keybind_changer.tscn" id="2_4xjp8"]
 [ext_resource type="Texture2D" uid="uid://wmf0pu6iului" path="res://assets/cricket.png" id="2_bwpqr"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_whixt"]
+device = -1
+keycode = 87
+unicode = 119
+
+[sub_resource type="InputEventKey" id="InputEventKey_aw74r"]
+device = -1
+keycode = 69
+unicode = 101
+
+[sub_resource type="InputEventKey" id="InputEventKey_7g4ow"]
+device = -1
+keycode = 68
+unicode = 100
+
+[sub_resource type="InputEventKey" id="InputEventKey_dqgl7"]
+device = -1
+keycode = 88
+unicode = 120
+
+[sub_resource type="InputEventKey" id="InputEventKey_g3ffs"]
+device = -1
+keycode = 90
+unicode = 122
+
+[sub_resource type="InputEventKey" id="InputEventKey_hwsre"]
+device = -1
+keycode = 65
+unicode = 97
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wotpr"]
 atlas = ExtResource("2_bwpqr")
@@ -53,6 +83,7 @@ layout_mode = 2
 layout_mode = 2
 text = "NW"
 InputActionName = "NW"
+InitialBinding = SubResource("InputEventKey_whixt")
 
 [node name="Label" type="Label" parent="HBoxContainer/LeftSide/NWBox"]
 layout_mode = 2
@@ -65,6 +96,7 @@ layout_mode = 2
 layout_mode = 2
 text = "NE"
 InputActionName = "NE"
+InitialBinding = SubResource("InputEventKey_aw74r")
 
 [node name="Label" type="Label" parent="HBoxContainer/LeftSide/NEBox"]
 layout_mode = 2
@@ -77,6 +109,7 @@ layout_mode = 2
 layout_mode = 2
 text = "E"
 InputActionName = "E"
+InitialBinding = SubResource("InputEventKey_7g4ow")
 
 [node name="Label" type="Label" parent="HBoxContainer/LeftSide/EBox"]
 layout_mode = 2
@@ -90,6 +123,7 @@ layout_mode = 2
 layout_mode = 2
 text = "SE"
 InputActionName = "SE"
+InitialBinding = SubResource("InputEventKey_dqgl7")
 
 [node name="Label" type="Label" parent="HBoxContainer/LeftSide/SEBox"]
 layout_mode = 2
@@ -103,6 +137,7 @@ layout_mode = 2
 layout_mode = 2
 text = "SW"
 InputActionName = "SW"
+InitialBinding = SubResource("InputEventKey_g3ffs")
 
 [node name="Label" type="Label" parent="HBoxContainer/LeftSide/SWBox"]
 layout_mode = 2
@@ -115,6 +150,7 @@ layout_mode = 2
 layout_mode = 2
 text = "W"
 InputActionName = "W"
+InitialBinding = SubResource("InputEventKey_hwsre")
 
 [node name="Label" type="Label" parent="HBoxContainer/LeftSide/WBox"]
 layout_mode = 2
