@@ -3,12 +3,14 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
+	%SeedLine.value=randi_range(0,100000)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
 
 
 
@@ -35,4 +37,6 @@ func _on_start_game_pressed():
 	GameSettings.challenge_mode = %CheckBox.button_pressed
 	GameSettings.challenge_speed = %ChallengeSpeedSlider.value
 	GameSettings.worm_ticks = %WormTicksSlider.value
+	GameSettings.seed = %SeedLine.value
+	GameSettings.update()
 	get_tree().change_scene_to_file("res://main_game.tscn")

@@ -69,6 +69,8 @@ func make_maze(height=11, stick_percentage = 0.5):
 	##idea: start with random grid of sticks and rocks
 	##remove a tile, then check whether all removed nodes are connected
 	##once they are, stop
+	$CricketMap/Label.text=str(GameSettings.seed)
+	seed(GameSettings.seed)
 	var rock_rows = range(height)
 	rock_rows.shuffle()
 	var rock_cols = range(height)
