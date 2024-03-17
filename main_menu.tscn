@@ -45,6 +45,9 @@ Use the keys to move around inside the cricket. Move over nerve ganglia to contr
 [img region=128,0,32,32]res://assets/cricket_tiles_symbols.png[/img] Jump two tiles forward. [img region=32,0,32,32]res://assets/ground.png[/img] can be jumped over, but [img region=0,0,32,32]res://assets/ground.png[/img] cannot.
 "
 
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
 [node name="RightSide" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -105,6 +108,21 @@ ticks_on_borders = true
 unique_name_in_owner = true
 layout_mode = 2
 text = "4 Worm move(s) per cricket move"
+
+[node name="SeedContainer" type="HBoxContainer" parent="HBoxContainer/RightSide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SeedLine" type="SpinBox" parent="HBoxContainer/RightSide/SeedContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 100000.0
+
+[node name="SeedLabel" type="Label" parent="HBoxContainer/RightSide/SeedContainer"]
+layout_mode = 2
+text = "Random Seed"
 
 [node name="StartGameBox" type="MarginContainer" parent="HBoxContainer/RightSide"]
 layout_mode = 2
