@@ -62,7 +62,7 @@ public partial class KeybindChanger : Button
 		else
 		{
 			Text = "???";
-			GameSettings.EmitSignal("keybind_changed", ButtonClicked); 
+			GameSettings.EmitSignal("keybind_changed","ButtonClicked"); 
 			Active = true;
 		}
 	}

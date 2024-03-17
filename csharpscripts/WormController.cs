@@ -144,9 +144,9 @@ public partial class WormController : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsPressed() && @event is InputEventAction eventAction)
-		{
-			if (Directions.ContainsKey(eventAction.Action.ToString())) Move(Directions[eventAction.Action.ToString()]);
+		foreach (string direction in Directions.Keys)
+		{ 
+			if (@event.IsActionPressed(direction)) Move(Directions[direction]);
 		}
 	}
 

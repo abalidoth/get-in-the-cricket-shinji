@@ -38,5 +38,4 @@ func _on_start_game_pressed():
 	GameSettings.challenge_speed = %ChallengeSpeedSlider.value
 	GameSettings.worm_ticks = %WormTicksSlider.value
 	GameSettings.seed = %SeedLine.value
-	GameSettings.update()
 	get_tree().change_scene_to_file("res://main_game.tscn")
