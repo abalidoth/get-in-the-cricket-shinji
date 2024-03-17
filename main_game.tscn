@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2yarlqmfnq26"]
+[gd_scene load_steps=9 format=3 uid="uid://d2yarlqmfnq26"]
 
+[ext_resource type="Script" path="res://main_game.gd" id="1_0hyq2"]
 [ext_resource type="PackedScene" uid="uid://r18felxffcdy" path="res://cricket_world.tscn" id="1_8v1ut"]
 [ext_resource type="PackedScene" uid="uid://dlev1l66qx2dk" path="res://worm_world.tscn" id="2_l2j73"]
+[ext_resource type="Texture2D" uid="uid://cdkos3fpgd7yo" path="res://assets/win_card.png" id="3_oalda"]
+[ext_resource type="Texture2D" uid="uid://ipwm450sy6uj" path="res://assets/loss_card.png" id="4_cvs32"]
 
 [sub_resource type="Gradient" id="Gradient_btfmt"]
 offsets = PackedFloat32Array(0, 0.836991, 1)
@@ -18,6 +21,7 @@ color_ramp = SubResource("Gradient_btfmt")
 noise = SubResource("FastNoiseLite_4cov0")
 
 [node name="MainGame" type="Node2D"]
+script = ExtResource("1_0hyq2")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -8
@@ -36,6 +40,43 @@ debug = false
 position = Vector2(701, 0)
 H_Step = Vector2i(5, 0)
 
+[node name="WinRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -37.0
+offset_top = -65.0
+offset_right = 1221.0
+offset_bottom = 681.0
+color = Color(0, 0, 0, 0.803922)
+
+[node name="WinScreen" type="TextureRect" parent="WinRect"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 190.0
+offset_right = 1068.0
+offset_bottom = 628.0
+texture = ExtResource("3_oalda")
+
+[node name="LossRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -107.0
+offset_top = -68.0
+offset_right = 1332.0
+offset_bottom = 718.0
+color = Color(0, 0, 0, 0.803922)
+
+[node name="TextureRect" type="TextureRect" parent="LossRect"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 127.0
+offset_right = 1403.0
+offset_bottom = 743.0
+texture = ExtResource("4_cvs32")
+
+[node name="GameOverTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="win_game" from="CricketWorld" to="." method="_on_cricket_world_win_game"]
+[connection signal="Collision" from="WormWorld" to="." method="_on_worm_world_collision"]
 [connection signal="Go" from="WormWorld" to="CricketWorld" method="_on_worm_world_go"]
 [connection signal="Jump" from="WormWorld" to="CricketWorld" method="_on_worm_world_jump"]
 [connection signal="Left" from="WormWorld" to="CricketWorld" method="_on_worm_world_left"]
