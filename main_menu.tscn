@@ -1,0 +1,122 @@
+[gd_scene load_steps=4 format=3 uid="uid://bysc1kecyeupc"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_sxicq"]
+[ext_resource type="Texture2D" uid="uid://wmf0pu6iului" path="res://assets/cricket.png" id="2_bwpqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wotpr"]
+atlas = ExtResource("2_bwpqr")
+region = Rect2(0, 0, 32, 32)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sxicq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftSide" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "You are Shinji, a [species] horsehair worm. You hatched inside a Eurasian field cricket... but now you're getting too big. You need to get this cricket into the water, and fast!
+
+Use the keys to move around inside the cricket. Move over nerve ganglia to control the cricket and guide it to water.
+
+[img region=32,0,64,32]res://assets/cricket_tiles_symbols.png[/img] Turn the cricket left or right.
+
+[img region=96,0,32,32]res://assets/cricket_tiles_symbols.png[/img][img region=192,0,32,32]res://assets/cricket_tiles_symbols.png[/img] Turn off or on automatic forward movement. Any other command will also stop the cricket.
+
+[img region=160,0,32,32]res://assets/cricket_tiles_symbols.png[/img] Step forward one square.
+
+[img region=128,0,32,32]res://assets/cricket_tiles_symbols.png[/img] Jump two tiles forward. [img region=32,0,32,32]res://assets/ground.png[/img] can be jumped over, but [img region=0,0,32,32]res://assets/ground.png[/img] cannot.
+"
+
+[node name="RightSide" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChallengeBox" type="HBoxContainer" parent="HBoxContainer/RightSide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer/RightSide/ChallengeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ChallengeMode" type="Label" parent="HBoxContainer/RightSide/ChallengeBox"]
+layout_mode = 2
+text = "Challenge Mode (timed movement)"
+
+[node name="ChallengeSpeedBox" type="HBoxContainer" parent="HBoxContainer/RightSide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ChallengeSpeedSlider" type="HSlider" parent="HBoxContainer/RightSide/ChallengeSpeedBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+editable = false
+tick_count = 10
+ticks_on_borders = true
+
+[node name="ChallengeModeSpeed" type="Label" parent="HBoxContainer/RightSide/ChallengeSpeedBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Move Speed (N/A)"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightSide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WormTicksBox" type="HBoxContainer" parent="HBoxContainer/RightSide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WormTicksSlider" type="HSlider" parent="HBoxContainer/RightSide/WormTicksBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 10.0
+value = 4.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="WormTicksLabel" type="Label" parent="HBoxContainer/RightSide/WormTicksBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "4 Worm move(s) per cricket move"
+
+[node name="StartGameBox" type="MarginContainer" parent="HBoxContainer/RightSide"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="StartGame" type="Button" parent="HBoxContainer/RightSide/StartGameBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start Game"
+icon = SubResource("AtlasTexture_wotpr")
+
+[connection signal="toggled" from="HBoxContainer/RightSide/ChallengeBox/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="value_changed" from="HBoxContainer/RightSide/ChallengeSpeedBox/ChallengeSpeedSlider" to="." method="_on_challenge_speed_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/RightSide/WormTicksBox/WormTicksSlider" to="." method="_on_worm_ticks_slider_value_changed"]
+[connection signal="pressed" from="HBoxContainer/RightSide/StartGameBox/StartGame" to="." method="_on_start_game_pressed"]

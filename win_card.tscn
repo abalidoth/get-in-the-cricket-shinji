@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2k40805jp3os"]
+
+[ext_resource type="Texture2D" uid="uid://cjbdptc6nhmvw" path="res://assets/title_card.png" id="1_o1v7y"]
+
+[node name="WinCard" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -96.0
+offset_top = -92.0
+offset_right = 1263.0
+offset_bottom = 767.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 35.0
+offset_top = -64.0
+offset_right = 1193.0
+offset_bottom = 515.0
+texture = ExtResource("1_o1v7y")
