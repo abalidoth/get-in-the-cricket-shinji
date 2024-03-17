@@ -5,6 +5,8 @@ public partial class KeybindChanger : Button
 {
 	[Export]
 	string InputActionName;
+        [Export]
+	InputEventKey InitialBinding;
 	string CurrentKeybind;
 	Node GameSettings;
 
@@ -12,8 +14,8 @@ public partial class KeybindChanger : Button
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		CurrentKeybind = (InputMap.ActionGetEvents(InputActionName).First() as InputEventKey).AsTextKeyLabel(); ;
-		Text = CurrentKeybind;
+		InputMap.ActionAddEvent(InputActionName, InitialBinding)
+		Text = CurrentKeybind = InitialBinding..AsTextKeyLabel();
 		GameSettings = GetNode("/root/GameSettings");
 
 	}
@@ -49,14 +51,16 @@ public partial class KeybindChanger : Button
 		{
 			Active = true;
 			Text = "???";
+                        GameSettings.EmitSignal("keybind_changed", CurrentKeybind); 
 		}
 	}
 
-	public void OnBindingChanged(string NewBinding)
+	 public void OnBindingChanged(string NewBinding)
 	{
 		if (Active)
 		{
 			Active = false;
+                        if (NewBinding != CurrentKeybind) Text = CurrentKeybind;
 			return;
 		}
 		if (NewBinding == CurrentKeybind)
