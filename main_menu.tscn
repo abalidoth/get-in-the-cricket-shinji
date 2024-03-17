@@ -28,6 +28,23 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "You are Shinji, a [species] horsehair worm. You hatched inside a Eurasian field cricket... but now you're getting too big. You need to get this cricket into the water, and fast!
+
+Use the keys to move around inside the cricket. Move over nerve ganglia to control the cricket and guide it to water.
+
+[img region=32,0,64,32]res://assets/cricket_tiles_symbols.png[/img] Turn the cricket left or right.
+
+[img region=96,0,32,32]res://assets/cricket_tiles_symbols.png[/img][img region=192,0,32,32]res://assets/cricket_tiles_symbols.png[/img] Turn off or on automatic forward movement. Any other command will also stop the cricket.
+
+[img region=160,0,32,32]res://assets/cricket_tiles_symbols.png[/img] Step forward one square.
+
+[img region=128,0,32,32]res://assets/cricket_tiles_symbols.png[/img] Jump two tiles forward. [img region=32,0,32,32]res://assets/ground.png[/img] can be jumped over, but [img region=0,0,32,32]res://assets/ground.png[/img] cannot.
+"
+
 [node name="RightSide" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
